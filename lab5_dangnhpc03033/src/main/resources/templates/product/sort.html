@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sorting</title>
+</head>
+<body>
+<h3>SORTING BY <span th:text="${field}"></span></h3>
+    <table border="1" style="width:100%">
+        <tr>
+            <th><a th:href="@{/product/sort(field='id')}">Id</a></th>
+            <th><a th:href="@{/product/sort(field='name')}">Name</a></th>
+            <th><a th:href="@{/product/sort(field='price')}">Price</a></th>
+            <th><a th:href="@{/product/sort(field='createDate')}">Date</a></th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.createDate}"></td>
+        </tr>
+    </table>
+</body>
+</html>

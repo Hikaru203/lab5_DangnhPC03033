@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagination</title>
+</head>
+<body>
+    <h3>PAGINATION</h3>
+    <table border="1" style="width:100%">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+        <tr th:each="item : ${page.content}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.price}"></td>
+            <td th:text="${item.createDate}"></td>
+        </tr>
+    </table>
+
+    <a th:href="@{/product/page(p=0)}">First</a>
+    <a th:href="@{/product/page(p=${page.number - 1})}" th:if="${page.number > 0}">Previous</a>
+    <a th:href="@{/product/page(p=${page.number + 1})}" th:if="${page.number + 1 < page.totalPages}">Next</a>
+    <a th:href="@{/product/page(p=${page.totalPages - 1})}" th:if="${page.totalPages > 1}">Last</a>
+
+    <ul>
+        <li>Current entities: <span th:text="${page.numberOfElements}"></span></li>
+        <li>Page number: <span th:text="${page.number}"></span></li>
+        <li>Page size: <span th:text="${page.size}"></span></li>
+        <li>Total entities: <span th:text="${page.totalElements}"></span></li>
+        <li>Total pages: <span th:text="${page.totalPages}"></span></li>
+    </ul>
+</body>
+</html>

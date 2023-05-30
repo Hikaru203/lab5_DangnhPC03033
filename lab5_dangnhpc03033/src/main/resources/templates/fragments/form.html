@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <form action="/category/index" method="post" th:object="${item}">
+        <input type="text" th:field="*{id}" placeholder="Category Id?"/>
+        <input type="text" th:field="*{name}" placeholder="Category Name?"/>
+        <hr>
+        <button type="submit" formaction="/category/create">Create</button>
+        <button type="submit" formaction="/category/update">Update</button>
+        <a th:href="@{/category/delete/{id}(id=${item.id})}">Delete</a>
+        <a th:href="@{/category/index}">Reset</a>
+    </form>
+</body>
+</html>
