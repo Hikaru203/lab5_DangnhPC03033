@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Management</title>
+</head>
+<body>
+    <h3>ACCOUNT MANAGEMENT</h3>
+    <form th:action="@{/account/index}" th:object="${item}" method="post">
+        <input th:field="*{username}" placeholder="Username" /><br/>
+        <input th:field="*{password}" placeholder="Password" /><br/>
+        <input th:field="*{fullname}" placeholder="Fullname" /><br/>
+        <input th:field="*{email}" placeholder="Email" /><br/>
+        <input th:field="*{photo}" placeholder="Photo" /><br/>
+        <input type="checkbox" th:field="*{activated}" /><label>Activated</label><br/>
+        <input type="checkbox" th:field="*{admin}" /><label>Admin</label><br/>
+        <hr/>
+        <button type="submit" formaction="/account/create">Create</button>
+        <button type="submit" formaction="/account/update">Update</button>
+    </form>
+    <table border="1" style="width:100%">
+        <tr>
+            <th>Username</th>
+            <th>Fullname</th>
+            <th>Email</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.username}"></td>
+            <td th:text="${item.fullname}"></td>
+            <td th:text="${item.email}"></td>
+            <td>
+                <a th:href="@{/account/edit/{username}(username=${item.username})}">Edit</a>
+                <a th:href="@{/account/delete/{username}(username=${item.username})}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
