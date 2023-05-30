@@ -11,12 +11,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.Dao.AccountDAO;
 import com.example.demo.Dao.CategoryDAO;
 import com.example.demo.Dao.ProductDAO;
+import com.example.demo.Model.Account;
 import com.example.demo.Model.Category;
 import com.example.demo.Model.Product;
 
@@ -26,6 +29,9 @@ public class CategoryController {
     CategoryDAO dao; // Lớp DAO để làm việc với bảng Categories
     @Autowired
     private ProductDAO productDAO;
+    
+    @Autowired
+    AccountDAO accountDAO; // Làm việc với bảng Accounts
 
     @RequestMapping("/category/index")
     public String index(Model model) {
@@ -77,6 +83,7 @@ public class CategoryController {
         model.addAttribute("page", page);
         return "product/page";
     }
+    
 
 
 }

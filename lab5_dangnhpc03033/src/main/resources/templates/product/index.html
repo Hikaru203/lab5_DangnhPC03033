@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- Thêm liên kết CSS của Bootstrap -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>STT</th>
+					<th>Email</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="account, accountCount : ${item}">
+					<td th:text="${accountCount.index + 1}"></td>
+					<td th:text="${account.email}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<!-- Hiển thị phân trang -->
+		<nav aria-label="Page navigation example">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="#"
+					th:href="@{/account/sortPage(page=${page - 1})}" th:if="${page > 0}">Previous</a>
+				</li>
+				<li class="page-item"
+					th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}">
+					<a class="page-link" href="#"
+					th:href="@{/account/sortPage(page=${pageNumber})}"
+					th:text="${pageNumber + 1}"></a>
+				</li>
+				<li class="page-item"><a class="page-link" href="#"
+					th:href="@{/account/sortPage(page=${page + 1})}"
+					th:if="${page + 1 < totalPages}">Next</a></li>
+			</ul>
+
+
+		</nav>
+
+	</div>
+
+	<!-- Thêm liên kết tới thư viện JavaScript của Bootstrap -->
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
